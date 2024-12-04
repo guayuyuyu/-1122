@@ -1,0 +1,48 @@
+<template>
+	<view class="pages">
+		<statusBar></statusBar>
+		<view class="uni-search-box">
+			<uni-search-bar v-model="keyword" ref="searchBar" radius="100" cancelButton="none" :placeholder="'搜索动态'" />
+			<view class="cover-search-bar" @click="searchClick"></view>
+		</view>
+
+		<uni-list class="uni-list">
+			<uni-list-item v-for="(item, index) in dynamicList" :key="index">
+				<template v-slot:header>
+					<image class="avatar" :src="item.avatar" mode="aspectFill"></image>
+				</template>
+				<template v-slot:body>
+					<text>{{ item.timestamp }} {{ item.username }}: {{ item.content }}</text>
+				</template>
+			</uni-list-item>
+		</uni-list>
+	</view>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			keyword: '',
+			dynamicList: [
+				{ avatar: 'path/to/avatar1.png', timestamp: '2024-08-15 18:00:32', username: 'winmt', content: '完成了题目' },
+				{ avatar: 'path/to/avatar2.png', timestamp: '2023-09-02 12:45:44', username: 'bj777', content: '完成了题目' },
+				// 更多动态...
+			]
+		};
+	},
+	methods: {
+		searchClick() {
+			// 搜索功能逻辑
+		}
+	}
+}
+</script>
+
+<style>
+.avatar {
+	width: 40px;
+	height: 40px;
+	border-radius: 20px;
+}
+</style>
